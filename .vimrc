@@ -94,7 +94,12 @@ let g:vim_markdown_frontmatter = 1 " Jekyll YAML frontmatter
 
 " Custom commands
 
-" vimgrep shortcut. Call pattern then extension (optional).
+" vimgrep shortcut. Call with pattern then extension (optional).
+" 	examples: 
+" 		:MySearch line-height css
+"		:MySearch $(document) js
+"		:MySearch varName         (looks for varName in any filetype)
+" 	use double quotes around pattern to specify string
 command! -nargs=+ MySearch call SearchPatExt(<f-args>)
 nnoremap <F3> :MySearch<space>
 
