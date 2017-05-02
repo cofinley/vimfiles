@@ -8,19 +8,23 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
-" Window size
-set lines=40
-set columns=140
+if has("gui_running")
+
+	" Window size
+	set lines=100
+	set columns=140
+
+	" Font
+	set guifont=Consolas:h10:cANSI
+
+endif
 
 " Colors
 set t_Co=256
 syntax enable
-set background=dark
-colo hybrid
+" set background=dark
+colo base16-default-dark
 set colorcolumn=80
-
-" Font
-set guifont=Consolas:h10:cANSI
 
 " Numbers
 set number numberwidth=4 
@@ -64,22 +68,41 @@ set shiftwidth=4
 autocmd FileType python nnoremap <leader>c I#<space><esc>jh
 autocmd FileType cpp nnoremap <leader>c I//<space><esc>jh
 " Spell check for markdown, txt
-" autocmd BufNewFile,BufRead *.md setlocal spell
-" autocmd BufNewFile,BufRead *.markdown setlocal spell
-" autocmd BufNewFile,BufRead *.txt setlocal spell
+autocmd BufNewFile,BufRead *.md setlocal spell
+autocmd BufNewFile,BufRead *.markdown setlocal spell
+autocmd BufNewFile,BufRead *.txt setlocal spell
 " spelling didn't look good with hybrid colorscheme
+
+
+" Plugin alterations
 
 " Hard-mode mappings
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR> " Toggle
 
 " nerdtree toggle mapping
-map <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 
 " Markdown Live Preview mapping
 nnoremap <C-m> :LivedownToggle<CR>
 
 " Markdown plugin flags
 let g:vim_markdown_folding_disabled = 1 " disable md folding
-set conceallevel=2
+set conceallevel=0
 let g:vim_markdown_frontmatter = 1 " Jekyll YAML frontmatter
+
+
+" Custom commands
+
+" vimgrep shortcut. Call pattern then extension (optional).
+command! -nargs=+ MySearch call SearchPatExt(<f-args>)
+nnoremap <F3> :MySearch<space>
+
+function! SearchPatExt(pat, ...)
+	echom a:pat
+	if a:0 > 0
+		 execute "noautocmd vimgrep " . a:pat . " **/*." . a:1
+	else
+		execute "noautocmd vimgrep " . a:pat . " **/*.*"
+	endif
+endfunction

@@ -19,3 +19,6 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/vim-unpaired"]
+	path = bundle/vim-unpaired
+	url = https://github.com/tpope/vim-unimpaired.git
