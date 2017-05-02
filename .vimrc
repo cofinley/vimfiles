@@ -99,7 +99,7 @@ let g:vim_markdown_frontmatter = 1 " Jekyll YAML frontmatter
 " 		:MySearch line-height css
 "		:MySearch $(document) js
 "		:MySearch varName         (looks for varName in any filetype)
-" 	use double quotes around pattern to specify string
+" 		:MySearch ##\ User\ Stories md       (use '\ ' for spaces)
 command! -nargs=+ MySearch call SearchPatExt(<f-args>)
 nnoremap <F3> :MySearch<space>
 
