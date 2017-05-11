@@ -23,7 +23,7 @@ endif
 set t_Co=256
 syntax enable
 " set background=dark
-colo base16-default-dark
+colo solarized
 set colorcolumn=80
 
 " Numbers
