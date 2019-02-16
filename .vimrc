@@ -8,17 +8,21 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" -------
+"   GUI
+" -------
+
 if has("gui_running")
 
 	" Window size
-	set lines=100
+	set lines=80
 	set columns=140
 
 	" Font
 	set guifont=Consolas:h10:cANSI
 
 endif
-
+ 
 " Colors
 set t_Co=256
 syntax enable
@@ -33,8 +37,13 @@ set number numberwidth=4
 set showcmd
 set statusline=%l%L
 
+" --------
+"   Maps
+" --------
+
 " Leader
 let mapleader = ","
+
 
 " Insert maps
 inoremap jk <esc>
@@ -58,11 +67,9 @@ set incsearch
 set ignorecase
 set smartcase
 
-" Formatting - Hard Tabs
+" Formatting - 4-space Tabs
 set autoindent
-set noexpandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Filetype-specific commands
 autocmd FileType python nnoremap <leader>c I#<space><esc>jh
@@ -74,11 +81,9 @@ autocmd BufNewFile,BufRead *.txt setlocal spell
 " spelling didn't look good with hybrid colorscheme
 
 
-" Plugin alterations
-
-" Hard-mode mappings
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-nnoremap <leader>h <Esc>:call ToggleHardMode()<CR> " Toggle
+" --------------------
+"  Plugin alterations
+" --------------------
 
 " nerdtree toggle mapping
 nnoremap <leader>t :NERDTreeToggle<CR>
@@ -87,12 +92,12 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <C-m> :LivedownToggle<CR>
 
 " Markdown plugin flags
-let g:vim_markdown_folding_disabled = 1 " disable md folding
-set conceallevel=0
 let g:vim_markdown_frontmatter = 1 " Jekyll YAML frontmatter
 
 
-" Custom commands
+" -----------------
+"  Custom commands
+" -----------------
 
 " vimgrep shortcut. Call with pattern then extension (optional).
 " 	examples: 
